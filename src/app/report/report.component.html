@@ -1,0 +1,44 @@
+<div class="container">
+    <h2> Report Data</h2>
+    <label>From Date:</label>
+    <input type="date" [(ngModel)]="fromDate">
+
+    <label> To Date:</label>
+    <input type="date"[(ngModel)]="toDate">
+
+    <button (click)="loadReportData()">Load Report Data</button>
+
+    <table border="1" *ngIf="table1.length>0">
+        <thead>
+            <tr>
+                <th  *ngFor="let key of table1[0] | keyvalue">{{key.key}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of table1">
+                <td   *ngFor="let key of row | keyvalue">{{key.value}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table border="1" *ngIf="table2.length>0">
+        <thead>
+            <tr>
+                <th  *ngFor="let key of table2[0] | keyvalue">{{key.key}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of table2">
+                <td   *ngFor="let key of row | keyvalue">{{key.value}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button *ngIf="table1.length > 0" (click)="exportToExcel(table1, 'Table1')">Export Table1 to Excel</button>
+    <button *ngIf="table1.length > 0" (click)="exportToPDF(table1, 'Table1')">Export Table1 to PDF</button>
+    
+    <button *ngIf="table2.length > 0" (click)="exportToExcel(table2, 'Table2')">Export Table2 to Excel</button>
+    <button *ngIf="table2.length > 0" (click)="exportToPDF(table2, 'Table2')">Export Table2 to PDF</button>
+    
+
+</div>
